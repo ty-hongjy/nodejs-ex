@@ -23,5 +23,5 @@ cnpm install -g node-mysql
 #cnpm install -g node-inspector
 cnpm install -g node-inspect
 cnpm install -g eslint
-
+cnpm install -g hotnode
 

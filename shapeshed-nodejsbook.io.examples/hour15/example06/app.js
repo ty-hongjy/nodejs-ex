@@ -1,10 +1,21 @@
 var express = require('express');
 var mongoose = require('mongoose');
+// routes = require('./routes'),
+ //user = require('./routes/user'),
+ http = require('http'),
+ path = require('path'),
+ favicon = require('serve-favicon'),
+ methodOverride = require('method-override'),
+ morgan = require('morgan'),
+ router = express.Router();
+ bodyParser = require('body-parser'),
+ errorHandler = require('errorhandler');
 
+var app = express();
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var Task = new Schema({
+var TaskSchema = new Schema({
   task : { 
     type: String, 
     required: true,
@@ -13,26 +24,22 @@ var Task = new Schema({
   updated_at : Date
 });
 
-var Task = mongoose.model('Task', Task);
+var Task = mongoose.model('Task', TaskSchema);
 
-var app = module.exports = express.createServer();
+  app.use(bodyParser());
+  app.use(methodOverride());
+  app.use(router);
 
-app.configure(function(){
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-});
+if ('development' === app.get('env')) {
+  app.use(errorHandler({ dumpExceptions: true, showStack: true })); 
+  mongoose.connect('mongodb://localhost:27017/todo_development', {useNewUrlParser: true});
+  app.listen(3000,"0.0.0.0");
+};
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-  mongoose.connect('mongodb://localhost/todo_development');
-  app.listen(3000);
-});
+if ('test' === app.get('env')) {
+  app.use(errorHandler({ dumpExceptions: true, showStack: true }));
+mongoose.connect('mongodb://localhost:27017/todo_test', {useNewUrlParser: true});
+  app.listen(3001,"0.0.0.0");
+};
 
-app.configure('test', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  mongoose.connect('mongodb://localhost/todo_test');
-  app.listen(3001);
-});
-
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("Express server listening on port %d in %s mode", app.get("port"),app.settings.env);

@@ -14,6 +14,7 @@ cnpm install -g express-generator
 cnpm install -g underscore
 cnpm install -g socket.io
 cnpm install -g jquery
+cnpm install -g jade
 cnpm install -g mysql
 cnpm install -g node-mysql
 

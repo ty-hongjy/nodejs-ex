@@ -19,6 +19,7 @@ cnpm install -g jquery
 #cnpm install -g jade
 cnpm install -g mysql
 cnpm install -g node-mysql
-cnpm install -g node-inspector
+#cnpm install -g node-inspector
+cnpm install -g node-inspect
 
 

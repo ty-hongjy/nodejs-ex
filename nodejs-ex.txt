@@ -1,3 +1,5 @@
+#setup for windows
+
 npm config set prefix "D:\Program Files\nodejs\node_global"
 npm config set cache "D:\Program Files\nodejs\node_cache"
 
@@ -14,8 +16,9 @@ cnpm install -g express-generator
 cnpm install -g underscore
 cnpm install -g socket.io
 cnpm install -g jquery
-cnpm install -g jade
+#cnpm install -g jade
 cnpm install -g mysql
 cnpm install -g node-mysql
+cnpm install -g node-inspector
 
 

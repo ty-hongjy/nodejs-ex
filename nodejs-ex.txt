@@ -15,4 +15,6 @@ cnpm install -g underscore
 cnpm install -g socket.io
 cnpm install -g jquery
 cnpm install -g mysql
+cnpm install -g node-mysql
+
 

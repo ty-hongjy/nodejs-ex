@@ -13,6 +13,7 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
   socket.on('message', function (data) {
+    console.log(data);
     socket.broadcast.emit('push message', data);
   });
 });

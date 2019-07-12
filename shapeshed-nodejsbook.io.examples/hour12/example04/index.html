@@ -14,7 +14,7 @@
       var socket = io.connect('http://127.0.0.1:3000');
       socket.on('ping', function (data) {
         console.log('Received PING. Sending PONG..');
-        socket.emit('pong', { text: 'PONG' });
+        socket.emit('pong', { text: 'pong' });
       });
       socket.on('pong', function (data) {
         console.log('Received PONG response. PONG!');
@@ -22,7 +22,7 @@
       $('#ping').click(function() {
         console.log('Sending PING to server..')
         //socket.emit('ping', { text: 'ping' });
-        socket.emit('ping', { text: 'PING' });
+        socket.emit('ping', { text: 'ping' });
       });
     </script>
 

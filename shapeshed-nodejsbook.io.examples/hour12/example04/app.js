@@ -17,13 +17,15 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
   socket.on('ping', function (data) {
     console.log('Received PING. Sending PONG..');
-    socket.emit('pong', { text: 'PONG' });
+    socket.emit('pong', { text: 'pong' });
   });
+
   socket.on('pong', function (data) {
     console.log('Received PONG response. PONG!');
   });
-  setInterval(function() {
-    //console.log('Sending PING to client..');
-    //socket.emit('ping', { text: 'PING' });
-  }, 10000);
+
+ // setInterval(function() {
+ //   console.log('Sending PING to client..');
+ //   socket.emit('ping', { text: 'PING' });
+ // }, 10000);
 });

@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   server = require('http').createServer(app),
   io = require('socket.io').listen(server),
-  bodyParser = require('body-parser'),
+  //bodyParser = require('body-parser'),
   errorHandler = require('errorhandler');
 
 app.set('port', process.env.PORT || 3000);

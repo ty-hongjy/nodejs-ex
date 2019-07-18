@@ -2,7 +2,7 @@ var http = require('http'),
   fs = require('fs');
   //var jsdom = require("jsdom");  
   //var window = jsdom.jsdom().defaultView;  
-  var $ = require('jquery');//(window); 
+  //var $ = require('jquery');//(window); 
 
 var server = http.createServer(function (req, res) {
   fs.readFile('./index.html', function(error, data) {

@@ -12,8 +12,8 @@ var express = require('express'),
   methodOverride = require('method-override'),
   morgan = require('morgan'),
   router = express.Router();
-  bodyParser = require('body-parser');  
-
+  bodyParser = require('body-parser'),
+  errorHandler = require('errorhandler');
 var app = express();
 
 // all environments
@@ -38,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' === app.get('env')) {
-  //app.use(express.errorHandler());
+//  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 app.get('/', routes.index);

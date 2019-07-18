@@ -8,6 +8,10 @@ var express = require('express'),
   user = require('./routes/user'),
   http = require('http'),
   path = require('path'),
+  favicon = require('serve-favicon'),
+  methodOverride = require('method-override'),
+  morgan = require('morgan'),
+  router = express.Router();
   bodyParser = require('body-parser');  
 
 var app = express();
@@ -16,16 +20,19 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+
+//app.use(favicon(options.favicon));
 //app.use(express.favicon());
-//app.use(express.logger('dev'));
+app.use(morgan('dev'));
 
 // parse application/x-www-form-urlencoded  
 app.use(bodyParser.urlencoded({ extended: false }))  
 // parse application/json  
 app.use(bodyParser.json())  
-//app.use(express.bodyParser());
+//app.use(bodyParser());
 
-//app.use(express.methodOverride());
+app.use(methodOverride());
+app.use(router);
 //app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 

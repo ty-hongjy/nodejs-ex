@@ -23,6 +23,7 @@ app.set('view engine', 'jade');
 
 //app.use(favicon(options.favicon));
 //app.use(express.favicon());
+//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(morgan('dev'));
 
 // parse application/x-www-form-urlencoded  

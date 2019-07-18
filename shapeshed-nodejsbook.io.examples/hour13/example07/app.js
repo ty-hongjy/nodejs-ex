@@ -3,6 +3,11 @@ var express = require('express'),
   routes = require('./routes'),
   server = require('http').createServer(app),
   io = require('socket.io').listen(server),
+  methodOverride = require('method-override'),
+  morgan = require('morgan'),
+  router = express.Router();
+  bodyParser = require('body-parser'),
+  errorHandler = require('errorhandler'),
   nicknames = [];
 
 app.set('port', process.env.PORT || 3000);
@@ -46,26 +51,23 @@ io.sockets.on('connection', function (socket) {
 
 // Configuration
 
-//app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-  app.use(app.router);
+  //app.use(bodyParser());
+  app.use(methodOverride());
+  app.use(router);
+  //app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(express.static(__dirname + '/public'));
-//});
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+if (app.get('env') === 'development') {
+  app.use(errorHandler({ dumpExceptions: true, showStack: true }));
+};
 
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
+if (app.get('env') === 'production') {
+  app.use(errorHandler());
+};
 
 // Routes
-
 app.get('/', routes.index);
 
 server.listen(app.get('port'), function(){

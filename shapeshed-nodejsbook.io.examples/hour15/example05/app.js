@@ -14,7 +14,7 @@ var rebels = [
 ];
 
 app.set('port', process.env.PORT || 3000);
-app.set('address', '127.0.0.1');
+app.set('address', '0.0.0.0');
 
 app.get('/', function(req, res, next){
   res.send(rebels);
@@ -22,6 +22,6 @@ app.get('/', function(req, res, next){
 
 app.use(errorHandler({ dumpExceptions: true, showStack: true })); 
 
-server.listen(3000,'127.0.0.1');
+server.listen(3000,app.get('address'));
 console.log("Express server listening on address %s port %d in %s mode", app.get('address'), app.get('port'), app.settings.env);
 //console.log("Express server listening on address %s ", app.get('address'));

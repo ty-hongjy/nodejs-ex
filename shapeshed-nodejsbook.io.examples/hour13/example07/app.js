@@ -12,6 +12,7 @@ var express = require('express'),
   nicknames = [];
 
 app.set('port', process.env.PORT || 3000);
+app.set('address', '0.0.0.0');
 
 io.sockets.on('connection', function (socket) {
   socket.on('nickname', function (data, callback) {
@@ -71,6 +72,6 @@ if (app.get('env') === 'production') {
 // Routes
 app.get('/', routes.index);
 
-server.listen(app.get('port'), function(){
+server.listen(app.get('port'),app.get('address'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

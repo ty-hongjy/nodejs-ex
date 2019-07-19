@@ -8,6 +8,7 @@ var express = require('express'),
   router = express.Router();
   bodyParser = require('body-parser'),
   errorHandler = require('errorhandler'),
+  stylus= require('stylus'),
   nicknames = [];
 
 app.set('port', process.env.PORT || 3000);
@@ -56,7 +57,7 @@ io.sockets.on('connection', function (socket) {
   //app.use(bodyParser());
   app.use(methodOverride());
   app.use(router);
-  //app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+  app.use(stylus.middleware({ src: __dirname + '/public' }));
   app.use(express.static(__dirname + '/public'));
 
 if (app.get('env') === 'development') {

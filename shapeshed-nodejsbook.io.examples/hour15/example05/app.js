@@ -24,4 +24,3 @@ app.use(errorHandler({ dumpExceptions: true, showStack: true }));
 
 server.listen(3000,app.get('address'));
 console.log("Express server listening on address %s port %d in %s mode", app.get('address'), app.get('port'), app.settings.env);
-//console.log("Express server listening on address %s ", app.get('address'));

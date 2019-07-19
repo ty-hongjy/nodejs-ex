@@ -2,12 +2,13 @@ var express = require('express'),
   app = express(),
   server = require('http').createServer(app),
   io = require('socket.io').listen(server),
+  errorHandler = require('errorhandler'),
   nicknames = [];
 
 app.set('port', process.env.PORT || 3000);
 
 if ('development' === app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 app.get('/', function (req, res) {

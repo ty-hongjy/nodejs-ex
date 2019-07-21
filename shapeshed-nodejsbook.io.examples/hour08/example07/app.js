@@ -83,14 +83,10 @@ app.get('/tasks/new', function(req, res){
 });
 
 app.post('/tasks', function(req, res){
-  //var m1=JSON.stringify(req.body);
-  var m=req.body;
-  var task = new Task(m);
+  var task = new Task(req.body);
   //var task = new Task({task: req.body.task});
-  //var task = new Task();
   //var task = new Task({task:'Krouky'});
-  //task.task=req.body.task;
-  task.save(function (err) {
+ task.save(function (err) {
     if (!err) {
       res.redirect('/tasks');
     }

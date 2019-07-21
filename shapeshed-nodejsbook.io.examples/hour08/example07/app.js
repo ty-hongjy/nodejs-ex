@@ -1,16 +1,29 @@
 /**
  * Module dependencies.
  */
-
+/*
 var express = require('express'),
   routes = require('./routes'),
   http = require('http'),
   path = require('path'),
   mongoose = require('mongoose');
+*/
+var express = require('express'),
+  routes = require('./routes'),
+  http = require('http'),
+  path = require('path'),
+  favicon = require('serve-favicon'),
+  methodOverride = require('method-override'),
+  morgan = require('morgan'),
+  router = express.Router();
+  bodyParser = require('body-parser'),
+  errorHandler = require('errorhandler'),
+  mongoose = require('mongoose');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/todo_development');
+mongoose.connect('mongodb://localhost:27017/todo_development', {useNewUrlParser: true});
+//mongoose.connect('mongodb://localhost/todo_development');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
@@ -24,16 +37,30 @@ var Task = mongoose.model('Task', Task);
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.favicon());
+
+/*app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
+*/
+app.use(morgan('dev'));
+
+// parse application/x-www-form-urlencoded  
+app.use(bodyParser.urlencoded({ extended: false }))  
+// parse application/json  
+app.use(bodyParser.json())  
+//app.use(bodyParser());
+
+app.use(methodOverride());
+app.use(router);
+//app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' === app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 app.get('/', routes.index);

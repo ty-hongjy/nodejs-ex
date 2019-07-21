@@ -1,7 +1,6 @@
 /**
  * Module dependencies.
  */
-
   
 var express = require('express'),
   routes = require('./routes'),
@@ -32,8 +31,8 @@ var Task = mongoose.model('Task', TaskSchema);
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(morgan('dev'));
 
+app.use(morgan('dev'));
 // parse application/x-www-form-urlencoded  
 app.use(bodyParser.urlencoded({ extended: false }))  
 // parse application/json  
@@ -102,7 +101,7 @@ app.post('/tasks/:id', function(req, res){
   });
 });
 
-app.del('/tasks/:id', function(req, res){
+app.delete('/tasks/:id', function(req, res){
   Task.findOne({ _id: req.params.id }, function(err, doc) {
     doc.remove(function() {
       res.redirect('/tasks');

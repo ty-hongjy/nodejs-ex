@@ -83,15 +83,9 @@ app.get('/tasks/new', function(req, res){
 });
 
 app.post('/tasks', function(req, res){
-  //var task = new Task({task: req.body.task},false);
-  //var m=req.body.json;
-  var m1=JSON.stringify(req.body);
+  //var m1=JSON.stringify(req.body);
   var m=req.body;
-  //var m1=req.json();
-  //req.query.student_name
-  //var task = new Task(req.req.query.task,false);
-  //var task = new Task(req.body.task,false);
-  var task = new Task( m);
+  var task = new Task(m);
   //var task = new Task({task: req.body.task});
   //var task = new Task();
   //var task = new Task({task:'Krouky'});

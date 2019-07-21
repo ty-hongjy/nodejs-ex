@@ -27,11 +27,14 @@ mongoose.connect('mongodb://localhost:27017/todo_development', {useNewUrlParser:
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var Task = new Schema({
+var TaskSchema = new Schema({
   task: String
+},
+{
+  versionKey: false
 });
 
-var Task = mongoose.model('Task', Task);
+var Task = mongoose.model('Task', TaskSchema);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -54,7 +57,6 @@ app.use(bodyParser.json())
 
 app.use(methodOverride());
 app.use(router);
-//app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -81,7 +83,19 @@ app.get('/tasks/new', function(req, res){
 });
 
 app.post('/tasks', function(req, res){
-  var task = new Task(req.body.task);
+  //var task = new Task({task: req.body.task},false);
+  //var m=req.body.json;
+  var m1=JSON.stringify(req.body);
+  var m=req.body;
+  //var m1=req.json();
+  //req.query.student_name
+  //var task = new Task(req.req.query.task,false);
+  //var task = new Task(req.body.task,false);
+  var task = new Task( m);
+  //var task = new Task({task: req.body.task});
+  //var task = new Task();
+  //var task = new Task({task:'Krouky'});
+  //task.task=req.body.task;
   task.save(function (err) {
     if (!err) {
       res.redirect('/tasks');

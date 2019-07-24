@@ -14,11 +14,11 @@ mongoose.connect('mongodb://localhost/todo_development');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var Task = new Schema({
+var TaskSchema = new Schema({
   task: String
 });
 
-var Task = mongoose.model('Task', Task);
+var Task = mongoose.model('Task', TaskSchema);
 
 // all environments
 app.set('port', process.env.PORT || 3000);

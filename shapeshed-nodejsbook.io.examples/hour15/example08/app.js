@@ -25,6 +25,8 @@ var TaskSchema = new Schema({
 var Task = mongoose.model('Task', TaskSchema);
 
 app.set('address', '0.0.0.0');
+app.set('env','test');
+
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(router);

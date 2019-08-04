@@ -17,8 +17,8 @@ var app = express();
 var db = mongojs('backbone_tasks', ['tasks']);
 
 app.use(bodyParser());
-app.use(express.static(__dirname + '/public'));
 app.use(errorHandler({dumpExceptions: true, showStack: true})); 
+app.use(express.static(__dirname + '/public'));
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');

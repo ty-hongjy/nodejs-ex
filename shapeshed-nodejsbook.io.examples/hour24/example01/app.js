@@ -1,10 +1,25 @@
 var express = require('express'),
-    db = require("mongojs").connect('backbone_tasks', ['tasks']);
+routes = require('./routes'),
+http = require('http'),
+path = require('path'),
+favicon = require('serve-favicon'),
+methodOverride = require('method-override'),
+morgan = require('morgan'),
+router = express.Router();
+bodyParser = require('body-parser'),
+errorHandler = require('errorhandler'),
+mongoose = require('mongoose');
 
-var app = module.exports = express.createServer();
-app.use(express.bodyParser());
+var app = express();
+
+//mongoose.connect('mongodb://localhost:27017/todo_development', {useNewUrlParser: true});
+
+db = require("mongojs").connect('backbone_tasks', ['tasks']);
+
+//var app = module.exports = express.createServer();
+app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
-app.use(express.errorHandler({dumpExceptions: true, showStack: true})); 
+app.use(errorHandler({dumpExceptions: true, showStack: true})); 
 
 app.get('/', function(req, res){
   res.render('index.jade', { 

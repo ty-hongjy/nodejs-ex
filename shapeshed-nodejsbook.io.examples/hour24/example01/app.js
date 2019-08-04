@@ -1,5 +1,5 @@
 var express = require('express'),
-routes = require('./routes'),
+//routes = require('./routes'),
 http = require('http'),
 path = require('path'),
 favicon = require('serve-favicon'),
@@ -8,18 +8,23 @@ morgan = require('morgan'),
 router = express.Router();
 bodyParser = require('body-parser'),
 errorHandler = require('errorhandler'),
-mongoose = require('mongoose');
+//mongoose = require('mongoose'),
+mongojs = require("mongojs");
 
 var app = express();
 
-//mongoose.connect('mongodb://localhost:27017/todo_development', {useNewUrlParser: true});
+//var databaseUrl = "localhost:27017/backbone_tasks";
+var db = mongojs('backbone_tasks', ['tasks']);
 
-db = require("mongojs").connect('backbone_tasks', ['tasks']);
-
-//var app = module.exports = express.createServer();
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
 app.use(errorHandler({dumpExceptions: true, showStack: true})); 
+
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+app.use(morgan('dev'));
 
 app.get('/', function(req, res){
   res.render('index.jade', { 
@@ -58,3 +63,7 @@ app.del('/api/tasks/:id', function(req, res){
 });
 
 app.listen(3000);
+/*http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+*/

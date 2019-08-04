@@ -1,4 +1,5 @@
-!!! 5
+//!!! 5
+doctype 
 html
   head
     title Node.js / Backbone.js Example
@@ -25,13 +26,13 @@ html
       |     <%= task_template({ task: task }) %>
       |   <% }); %>
       | </ul>
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    //script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script(src="https://code.jquery.com/jquery-3.1.1.min.js")
     script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.1/underscore-min.js')
     script(src='http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.1/backbone-min.js')
     script(src='/javascripts/application.js')
     script
       var tasks = new App.Tasks;
       tasks.reset(!{tasks});
-      $(function() {
-        App.init();
+      $(function() {App.init();
       });

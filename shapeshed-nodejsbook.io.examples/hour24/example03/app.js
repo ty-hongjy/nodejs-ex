@@ -1,10 +1,24 @@
-var express = require('express'),
-    db = require("mongojs").connect('backbone_tasks', ['tasks']);
+http = require('http'),
+path = require('path'),
+favicon = require('serve-favicon'),
+methodOverride = require('method-override'),
+morgan = require('morgan'),
+router = express.Router();
+bodyParser = require('body-parser'),
+errorHandler = require('errorhandler'),
+//mongoose = require('mongoose'),
+mongojs = require("mongojs");
 
-var app = module.exports = express.createServer();
-app.use(express.bodyParser());
+var app = express();
+
+//var databaseUrl = "localhost:27017/backbone_tasks";
+var db = mongojs('backbone_tasks', ['tasks']);
+//var express = require('express');
+ //   db = require("mongojs").connect('backbone_tasks', ['tasks']);
+
+app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
-app.use(express.errorHandler({dumpExceptions: true, showStack: true})); 
+app.use(errorHandler({dumpExceptions: true, showStack: true})); 
 
 app.get('/', function(req, res){
   db.tasks.find().sort({ $natural: -1 }, function(err, tasks) {

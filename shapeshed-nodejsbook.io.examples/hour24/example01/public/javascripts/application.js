@@ -1,4 +1,4 @@
-var App = {};
+var App = App || {};
 
 App.Task = Backbone.Model.extend({
   idAttribute: "_id",

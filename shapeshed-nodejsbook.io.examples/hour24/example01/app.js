@@ -56,7 +56,7 @@ app.put('/api/tasks/:id', function(req, res){
   });
 });
 
-app.del('/api/tasks/:id', function(req, res){
+app.delete('/api/tasks/:id', function(req, res){
   db.tasks.remove( { _id: db.ObjectId(req.params.id) }, function(err) {
     res.send();
   });

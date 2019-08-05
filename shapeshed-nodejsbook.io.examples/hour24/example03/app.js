@@ -14,8 +14,6 @@ var app = express();
 
 //var databaseUrl = "localhost:27017/backbone_tasks";
 var db = mongojs('backbone_tasks', ['tasks']);
-//var express = require('express');
- //   db = require("mongojs").connect('backbone_tasks', ['tasks']);
 
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));

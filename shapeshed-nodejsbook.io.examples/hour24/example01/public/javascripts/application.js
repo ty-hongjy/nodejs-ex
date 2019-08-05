@@ -6,6 +6,9 @@ App.Task = Backbone.Model.extend({
 
 App.Tasks = Backbone.Collection.extend({
   model: App.Task,
-  url: '/api/tasks'
+  url: '/api/tasks',
+  initialize: function() {
+    console.log('集合初始化成功');
+  }
 });
 

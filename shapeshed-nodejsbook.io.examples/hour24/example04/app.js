@@ -1,10 +1,21 @@
 var express = require('express'),
-    db = require("mongojs").connect('backbone_tasks', ['tasks']);
+http = require('http'),
+path = require('path'),
+favicon = require('serve-favicon'),
+methodOverride = require('method-override'),
+morgan = require('morgan'),
+router = express.Router();
+bodyParser = require('body-parser'),
+errorHandler = require('errorhandler'),
+//mongoose = require('mongoose'),
+mongojs = require("mongojs");
+var express = require('express'),
+ db = mongojs('backbone_tasks', ['tasks']);
 
-var app = module.exports = express.createServer();
-app.use(express.bodyParser());
+var app = express();
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
-app.use(express.errorHandler({dumpExceptions: true, showStack: true})); 
+app.use(errorHandler({dumpExceptions: true, showStack: true})); 
 
 app.get('/', function(req, res){
   db.tasks.find().sort({ $natural: -1 }, function(err, tasks) {
@@ -39,7 +50,7 @@ app.put('/api/tasks/:id', function(req, res){
   });
 });
 
-app.del('/api/tasks/:id', function(req, res){
+app.delete('/api/tasks/:id', function(req, res){
   db.tasks.remove( { _id: db.ObjectId(req.params.id) }, function(err) {
     res.send();
   });

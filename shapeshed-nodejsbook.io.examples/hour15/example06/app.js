@@ -38,7 +38,7 @@ if ('development' === app.get('env')) {
 
 if ('test' === app.get('env')) {
   app.use(errorHandler({ dumpExceptions: true, showStack: true }));
-mongoose.connect('mongodb://localhost:27017/todo_test', {useNewUrlParser: true});
+  mongoose.connect('mongodb://localhost:27017/todo_test', {useNewUrlParser: true});
   app.listen(3001,"0.0.0.0");
 };
 

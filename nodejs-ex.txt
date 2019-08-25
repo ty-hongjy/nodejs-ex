@@ -25,3 +25,5 @@ cnpm install -g node-inspect
 cnpm install -g eslint
 cnpm install -g hotnode
 cnpm install -g mocha
+cnpm install -g coffee-script
+

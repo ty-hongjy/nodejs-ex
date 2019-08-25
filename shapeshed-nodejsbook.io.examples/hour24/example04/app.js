@@ -9,10 +9,11 @@ bodyParser = require('body-parser'),
 errorHandler = require('errorhandler'),
 //mongoose = require('mongoose'),
 mongojs = require("mongojs");
-var express = require('express'),
- db = mongojs('backbone_tasks', ['tasks']);
+
+db = mongojs('backbone_tasks', ['tasks']);
 
 var app = express();
+
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.use(errorHandler({dumpExceptions: true, showStack: true})); 

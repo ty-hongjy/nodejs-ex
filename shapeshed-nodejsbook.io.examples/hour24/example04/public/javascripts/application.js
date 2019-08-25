@@ -64,6 +64,7 @@ App.TasksView = Backbone.View.extend({
   },
 
 });
+
 App.init = function() {
   new App.TasksView({ collection: tasks });
 }

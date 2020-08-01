@@ -12,7 +12,7 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 io.sockets.on('connection', function (socket) {

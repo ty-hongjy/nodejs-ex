@@ -26,4 +26,6 @@ cnpm install -g eslint
 cnpm install -g hotnode
 cnpm install -g mocha
 cnpm install -g coffee-script
+cnpm install -g log4js
 
+moment

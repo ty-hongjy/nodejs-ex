@@ -1,10 +1,9 @@
-# modify some code for china user for some reason
+# modify some code for some reason
+original code is  https://github.com/shapeshed/nodejsbook.io.examples
+
 # Code Examples for Sams Teach Yourself Node.js in 24 Hours
 
 This repository is a series of examples to support the Sam's Teach Yourself Node.js in 24 Hours book. 
-
-The book may be [purchased from Amazon][1].
-
 If you find any inconsistencies or code that doesn't run as expected please open an issue.
 
 The book contains examples written with Express 2.x. Since the book was released Express 3 has been released. The code examples here have been updated to run on Express 3 so please refer to the code examples here rather than the code in the book. 
@@ -40,4 +39,3 @@ The book contains examples written with Express 2.x. Since the book was released
   23. Creating Middleware With Connect
   24. Using Node.js With Backbone.js
 
-[1]: http://www.amazon.com/gp/product/0672335956/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0672335956&linkCode=as2&tag=samsteayounod-20

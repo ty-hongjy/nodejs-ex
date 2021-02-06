@@ -6,7 +6,8 @@ var server = http.createServer(function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.end(data, 'utf-8');
   });
-}).listen(3001, "127.0.0.1");
+}).listen(3001, "0.0.0.0");
+//}).listen(3001, "127.0.0.1");
 console.log('Server running at http://127.0.0.1:3001/');
 
 var io = require('socket.io').listen(server);

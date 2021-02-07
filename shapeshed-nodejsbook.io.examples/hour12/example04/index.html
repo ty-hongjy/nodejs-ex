@@ -8,10 +8,11 @@
     <h1>Socket.IO Example 04</h1>
     <button id="ping">Send PING to server</button>
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script-->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+     <script src="/jquery/jquery.js"></script> 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io.connect('http://127.0.0.1:3000');
+      var socket = io.connect('http://192.168.2.123:3000');
       socket.on('ping', function (data) {
         console.log('Received PING. Sending PONG..');
         socket.emit('pong', { text: 'pong' });

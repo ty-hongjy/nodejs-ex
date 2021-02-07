@@ -22,12 +22,13 @@
       <textarea id="message"></textarea>
       <input type="submit" value="Send message!" />
     </form>
-    <section id="messages"></section>
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script-->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <section id="messages"></section> 
+     <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> --> 
+     <script src="/jquery/jquery.js"></script> 
+     <script src="/socket.io/socket.io.js"></script> 
     <script>
       var socket = io.connect();
+      //var socket = io.connect("192.168.2.123:3000");
       socket.on('nicknames', function (data) {
         $('#nicknames').empty().append($('<ul>'));
         for(var i=0; i<data.length; i++) {
@@ -40,7 +41,8 @@
       socket.on('announcement', function (data) {
         $('#messages').append($('<p>').append($('<em>').text(data.message)));
       });
-      $(function () {
+
+	  $(function () {
         $('#set-nickname').submit(function() {
           socket.emit('nickname', $('#nickname').val(), function (data) {
             if (!data) {

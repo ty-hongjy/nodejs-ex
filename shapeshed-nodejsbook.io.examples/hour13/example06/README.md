@@ -10,4 +10,5 @@ Start the application with
 
     node app.js
 
+cp jquery.js at this folder.
 

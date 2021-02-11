@@ -2,10 +2,12 @@ var express = require('express'),
   app = express(),
   server = require('http').createServer(app),
   io = require('socket.io').listen(server),
+  $ = require("jquery"),
+  path = require('path'),
   nicknames = [];
 
 app.set('port', process.env.PORT || 3000);
-
+app.use(express.static(path.join(__dirname, '')));//指定app使用该静态路径
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });

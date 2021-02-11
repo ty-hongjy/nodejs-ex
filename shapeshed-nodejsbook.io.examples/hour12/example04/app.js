@@ -3,7 +3,7 @@ var http = require('http'),
   //var jsdom = require("jsdom");  
   //var window = jsdom.jsdom().defaultView;  
   //var $ = require('jquery');//(window); 
-
+var $ = require("jquery");
 var server = http.createServer(function (req, res) {
   fs.readFile('./index.html', function(error, data) {
     res.writeHead(200, { 'Content-Type': 'text/html' });

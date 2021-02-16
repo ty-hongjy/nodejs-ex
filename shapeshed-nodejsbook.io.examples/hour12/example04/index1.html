@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Socket.IO Example</title>
+  </head>
+  <body>
+    <h1>Socket.IO Example 04</h1>
+    <button id="ping">Send PING to server</button>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <!-- <script src="/jquery/jquery.js"></script> --> 
+    <script src="jquery.js"></script> 
+	<!-- <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script> --> 
+ 	<script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost:3000');
+      <!-- var socket = io.connect('http://192.168.2.123:3000'); -->
+      socket.on('ping', function (data) {
+        console.log('Received PING. Sending PONG..');
+        socket.emit('pong', { text: 'pong' });
+      });
+      socket.on('pong', function (data) {
+        console.log('Received PONG response. PONG!');
+      });
+      $('#ping').click(function() {
+        console.log('Sending PING to server..')
+        //socket.emit('ping', { text: 'ping' });
+        socket.emit('ping', { text: 'ping' });
+      });
+    </script>
+
+  </body>
+</html>
